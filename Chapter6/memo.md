@@ -30,3 +30,13 @@
 classDiagram
   Bicycle<|-- MountainBicycle
 ```
+
+## bicycle2
+- super: スーパークラスのチェーンを登っていき渡される
+  - ex: MountainBicycleのinitializeメソッドにてsuperを送るとBicycleのinitializeメソッドを実行する
+  - この例だと実行後に無理やりmergeしてる
+- この例だと、Bicycleは`具象クラス`のままでしかなく、サブクラスが作られるようには書かれていない
+  - 不必要なものまで継承されている状態
+  - RoadBicycleの振る舞いがBicycleに含まれてしまっているから
+
+↑ 抽象を見つける必要がある
