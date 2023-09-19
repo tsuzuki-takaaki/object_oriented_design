@@ -77,3 +77,17 @@ sizeとsparesメソッドはすべての自転車に共通する
   - 本来は具象クラスをそれぞれ作って、共通エッセンスを抽象クラスにあげる
     - 必要なものがなくなることがないから危険度も低い
 - 新たな継承の階層構造へとリファクタリングをする際には抽象を昇格できるようにコードを構成するべきであり、具象を降格するような構成にはすべきでない
+
+## bicycle5
+現状`RoadBicycle`も`MountainBicycle`も独自のsparesメソッドを実装している
+
+↑ `RoadBicycle`は`Bicycle`からコピーしたものであるため、問題なく動くが`MountainBicycle`はsuperメソッドを実装しているため動かない
+
+=> 抽象クラスBicycleにsparesメソッドを実装する必要がある
+
+- `RoadBicyle`の実装をそのまま`Bicycle`あげるだけというほど単純ではない
+  - 現状の`RoadBicycle`の`spares`は知識を持ちすぎている
+  - `chain`と`tire_size`はすべての自転車に共通するが、`tape_color`はRoadBicycleだけが知るべき
+  - 抽象は`Bicycle`に昇格させ、具象は`RoadBicycle`に残す
+  - `chain`と`tire_size`を昇格させる
+  - ↑ `size`と同様に属性である(変数)ため、ハードコードされるべきものではない
