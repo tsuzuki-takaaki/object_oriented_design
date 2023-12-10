@@ -9,7 +9,7 @@ class Parts
 
   def spares
     {
-      tire_size: tire_size
+      tire_size: tire_size,
       chain: chain
     }.merge(local_spares)
   end
@@ -63,4 +63,22 @@ class MountainBikeParts < Parts
     '2.1'
   end
 end
+
+class Bicycle
+  attr_reader :size, :parts
+
+  def initialize(args={})
+    @size = args[:size]
+    @parts = args[:parts]
+  end
+
+  def spares
+    parts.spares
+  end
+end
+
+mountain_bike_parts = MountainBikeParts.new(tape_color: 'red')
+mountain_bike = Bicycle.new(size: 500, parts: mountain_bike_parts)
+
+pp mountain_bike
 
